@@ -11,6 +11,11 @@ namespace bl_test
     public class UnitTest1
     {
         [TestMethod]
+        public void testGit()
+        {
+            Assert.AreEqual("1","1");
+        }
+        [TestMethod]
         public void TestMethod1()
         {
             var nanny = new Nanny
