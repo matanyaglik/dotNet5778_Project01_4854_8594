@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddChildWindow.xaml.cs">
+      <DependentUpon>AddChildWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChangeTextSize.cs" />
     <Compile Include="GetAllNannyContractWindow.xaml.cs">
       <DependentUpon>GetAllNannyContractWindow.xaml</DependentUpon>
@@ -64,9 +67,16 @@
     <Compile Include="NewMotherWindow.xaml.cs">
       <DependentUpon>NewMotherWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateChildWindow.xaml.cs">
+      <DependentUpon>UpdateChildWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateNannyWindow.xaml.cs">
       <DependentUpon>UpdateNannyWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddChildWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddNanny2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewMotherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateChildWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

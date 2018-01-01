@@ -21,5 +21,10 @@ namespace BE
         {
             return this.ToStringProperty();
         }
+
+        public Child GetCopy()
+        {
+            return (Child)this.MemberwiseClone();
+        }
     }
 }

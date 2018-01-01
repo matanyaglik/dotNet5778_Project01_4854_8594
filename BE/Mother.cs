@@ -42,5 +42,9 @@ namespace BE
             }
             return result;
         }
+        public Mother GetCopy()
+        {
+            return (Mother)this.MemberwiseClone();
+        }
     }
 }

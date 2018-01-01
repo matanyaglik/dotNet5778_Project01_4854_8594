@@ -22,6 +22,8 @@ namespace PLWPF
     public partial class MotherOptionsWindow : Window
     {
         public static Mother motherOption;
+        public static Child ChildOption;
+        private List<Child> ChildrenList=new List<Child>();
         private IBL bl = BLSingleton.GetBL;
         public MotherOptionsWindow(Mother mother)
         {
@@ -45,7 +47,7 @@ namespace PLWPF
 
         private void AddChildBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            new AddChildWindow(motherOption).ShowDialog();
         }
 
         private void AddContractBtn_Click(object sender, RoutedEventArgs e)
@@ -60,7 +62,12 @@ namespace PLWPF
 
         private void UpdateChildBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            ChildrenList = bl.GetChildrenByMother(motherOption.ID).ToList();
+            ChooseChildDataGrid.ItemsSource = ChildrenList;
+            ChooseChildDataGrid.Visibility = Visibility.Visible;
+            ChildSelectedBackButton.Visibility = Visibility.Visible;
+            ChildSelectedOKButton.Visibility = Visibility.Visible;
+            MotherOptionsBackButton.Visibility = Visibility.Collapsed;
         }
 
         private void UpdateContractBtn_Click(object sender, RoutedEventArgs e)
@@ -86,6 +93,29 @@ namespace PLWPF
         private void MotherOptionsBackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        
+        private void OnUpdateChildWindowClosed(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ChildSelectedBackButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            ChooseChildDataGrid.Visibility = Visibility.Collapsed;
+            ChildSelectedBackButton.Visibility = Visibility.Collapsed;
+            ChildSelectedOKButton.Visibility = Visibility.Collapsed;
+            MotherOptionsBackButton.Visibility = Visibility.Visible;
+        }
+
+        private void ChildSelectedOKButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            new UpdateChildWindow((Child) ChooseChildDataGrid.SelectedItem).ShowDialog();
+            ChooseChildDataGrid.Visibility = Visibility.Collapsed;
+            ChildSelectedBackButton.Visibility = Visibility.Collapsed;
+            ChildSelectedOKButton.Visibility = Visibility.Collapsed;
+            MotherOptionsBackButton.Visibility = Visibility.Visible;
         }
     }
 }

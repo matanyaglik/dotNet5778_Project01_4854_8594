@@ -40,6 +40,10 @@ namespace PLWPF
                 {
                     ((DataGridTextColumn)o).FontSize *= ChangeRatio;
                 }
+                if (o.GetType() == typeof(DataGrid))
+                {
+                    ((DataGrid)o).FontSize *= ChangeRatio;
+                }
                 if (o.GetType() == typeof(Grid))
                 {
                     RecurseChangeRatio((DependencyObject)o, ChangeRatio);

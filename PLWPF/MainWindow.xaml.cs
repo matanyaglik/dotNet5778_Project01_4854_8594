@@ -75,13 +75,9 @@ namespace PLWPF
         private void MotherExistingBtn_OnClick(object sender, RoutedEventArgs e)
         {
             MotherIdCheckGrid.Visibility = Visibility.Visible;
-            if (MotherIdTextBox.Text != "Please enter your ID here...")
-            {
-                MotherIdTextBox.Text = "Please enter your ID here...";
-                MotherIdTextBox.Foreground = new SolidColorBrush(Colors.DarkGray);
-            }
 
-
+            MotherIdTextBox.Text = "Please enter your ID here...";
+            MotherIdTextBox.Foreground = new SolidColorBrush(Colors.DarkGray);
         }
 
         private void NannyIdOkBtn_OnClick(object sender, RoutedEventArgs e)
