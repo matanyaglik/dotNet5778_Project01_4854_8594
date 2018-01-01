@@ -11,7 +11,7 @@
    
 
     <Grid x:Name="GetContractNannyGrid">
-        <DataGrid x:Name="GetContractDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="GetContractDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,0,-338,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Contract #" Binding="{Binding ContractNumber}" />
                 <DataGridTextColumn Header="Nanny ID" Binding="{Binding NannyId}" />

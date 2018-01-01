@@ -42,7 +42,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="MotherNewBtn" Content="New" FontSize="18"  FontWeight="Bold" Background="White" Foreground="#FF7C143F" FontFamily="Arial"/>
+                    <Button x:Name="MotherNewBtn" Content="New" FontSize="18"  FontWeight="Bold" Background="White" Foreground="#FF7C143F" FontFamily="Arial" Click="MotherNewBtn_OnClick"/>
                     <Button x:Name="MotherExistingBtn" Content="Existing" Grid.Column="1" FontSize="18" FontWeight="Bold" Background="White" Foreground="#FF7C143F" FontFamily="Arial" Click="MotherExistingBtn_OnClick"/>
                 </Grid>
                 <Grid x:Name="NannyIdCheckGrid" Visibility="Collapsed" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
@@ -62,17 +62,22 @@
                         <TextBox x:Name="NannyIdTextBox" Grid.Column="1" Margin="5" Text="Please enter your ID here..." Foreground="DarkGray" VerticalContentAlignment="Center" TextAlignment="Center" Padding="0,5" GotFocus="NannyIdTextBox_OnGotFocus" LostFocus="NannyIdTextBox_OnLostFocus" FontSize="14"/>
                     </Grid>
                 </Grid>
-                <Grid x:Name="MotherOptionsGrid" Visibility="Collapsed" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                <Grid x:Name="MotherIdCheckGrid" Visibility="Collapsed" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="RemoveMotherBtn" Content="Remove mother" Grid.Row="0" FontSize="18"  FontWeight="Bold" Background="White" Foreground="#FF7C143F" FontFamily="Arial"/>
-                    <Button x:Name="UpdateMotherBtn" Content="Update mother" Grid.Row="1" FontSize="18"  FontWeight="Bold" Background="White" Foreground="#FF7C143F" FontFamily="Arial"/>
-                    <Button x:Name="GetAllMothersBtn" Content="Get all mothers" Grid.Row="2" FontSize="18"  FontWeight="Bold" Background="White" Foreground="#FF7C143F" FontFamily="Arial"/>
-                    <Button x:Name="MotherOptionBackBtn" Content="Back" Grid.Row="3" FontSize="18"  FontWeight="Bold" Background="White" Foreground="#FF7C143F" FontFamily="Arial" Click="MotherOptionBackBtn_OnClick"/>
+                    <Button x:Name="MotherIdOkBtn" Content="OK" Grid.Row="1" FontSize="18"  FontWeight="Bold" Background="White" Foreground="#FF7C143F" FontFamily="Arial" Click="MotherIdOkBtn_OnClick" IsDefault="True"/>
+                    <Button x:Name="MotherIdCheckBackBtn" Content="Back" Grid.Row="2" FontSize="18"  FontWeight="Bold" Background="White" Foreground="#FF7C143F" FontFamily="Arial" Click="MotherOptionBackBtn_OnClick"/>
+                    <Grid x:Name="MotherIdTextBoxGrid" Grid.Row="0" Background="#FF7C143F">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="MotherIdLabel" VerticalAlignment="Center" HorizontalAlignment="Center" Content="ID:" FontSize="20" FontWeight="Bold" Background="#FF7C143F" Foreground="White"/>
+                        <TextBox x:Name="MotherIdTextBox" Grid.Column="1" Margin="5" Text="Please enter your ID here..." Foreground="DarkGray" VerticalContentAlignment="Center" TextAlignment="Center" Padding="0,5" GotFocus="MotherIdTextBox_OnGotFocus" LostFocus="MotherIdTextBox_OnLostFocus" FontSize="14"/>
+                    </Grid>
                 </Grid>
                 <Grid x:Name="NannyOptionGrid" Grid.RowSpan="3" Visibility="Collapsed" Background="White">
                     <Grid.RowDefinitions>

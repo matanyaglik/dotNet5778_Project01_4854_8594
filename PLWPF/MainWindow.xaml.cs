@@ -27,6 +27,7 @@ namespace PLWPF
     {
         private BL.IBL bl;
         public static Nanny nannyMain;
+        public static Mother motherMain;
         public MainWindow()
         {
             InitializeComponent();
@@ -71,14 +72,16 @@ namespace PLWPF
             NannyIdTextBox.Opacity = 50;
         }
 
-        private void MotherOptionBackBtn_OnClick(object sender, RoutedEventArgs e)
-        {
-            MotherOptionsGrid.Visibility = Visibility.Collapsed;
-        }
-
         private void MotherExistingBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            MotherOptionsGrid.Visibility = Visibility.Visible;
+            MotherIdCheckGrid.Visibility = Visibility.Visible;
+            if (MotherIdTextBox.Text != "Please enter your ID here...")
+            {
+                MotherIdTextBox.Text = "Please enter your ID here...";
+                MotherIdTextBox.Foreground = new SolidColorBrush(Colors.DarkGray);
+            }
+
+
         }
 
         private void NannyIdOkBtn_OnClick(object sender, RoutedEventArgs e)
@@ -99,7 +102,6 @@ namespace PLWPF
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
             }
         }
 
@@ -178,6 +180,68 @@ namespace PLWPF
         {
             var NannyContractWindow =new GetAllNannyContractWindow(nannyMain);
             NannyContractWindow.Show();
+        }
+
+        public void helloWorld()
+        {
+            MessageBox.Show("Hello World");
+        }
+
+        private void MotherNewBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var motherWindow=new NewMotherWindow();
+            motherWindow.ShowDialog();
+            motherWindow.Closed += OnMotherOptionsCloses;
+        }
+
+        private void MotherIdOkBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var input = MotherIdTextBox.Text;
+                motherMain = bl.GetMother(Convert.ToInt32(input));
+                if (motherMain == null)
+                    MessageBox.Show("Mother doesn't exist", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                {
+                    new MotherOptionsWindow(motherMain).ShowDialog();
+                }
+                MotherIdCheckGrid.Visibility = Visibility.Collapsed;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+        }
+
+        public void OnMotherOptionsCloses(Object sender, EventArgs e)
+        {
+            MotherIdTextBox.Text="";
+        }
+
+        private void MotherOptionBackBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            MotherIdCheckGrid.Visibility = Visibility.Collapsed;
+            
+        }
+
+        private void MotherIdTextBox_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (MotherIdTextBox.Text == "Please enter your ID here...")
+            {
+                MotherIdTextBox.Text = "";
+                MotherIdTextBox.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void MotherIdTextBox_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (MotherIdTextBox.Text == "")
+            {
+                MotherIdTextBox.Text = "Please enter your ID here...";
+                MotherIdTextBox.Foreground = new SolidColorBrush(Colors.DarkGray);
+            }
         }
     }
 }
