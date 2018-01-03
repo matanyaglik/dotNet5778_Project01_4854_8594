@@ -33,6 +33,7 @@ namespace PLWPF
             InitializeComponent();
             bl = BLSingleton.GetBL;
             nannyMain=new Nanny();
+            Nanny test;
             this.SizeChanged += OnWindowSizeChanged;
         }
 
