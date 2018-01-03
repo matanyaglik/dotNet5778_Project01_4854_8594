@@ -21,16 +21,16 @@ namespace PLWPF
     /// </summary>
     public partial class MotherOptionsWindow : Window
     {
-        public static Mother motherOption;
+        public static Mother MotherOption;
         public static Child ChildOption;
         private List<Child> ChildrenList=new List<Child>();
         private IBL bl = BLSingleton.GetBL;
         public MotherOptionsWindow(Mother mother)
         {
             this.SizeChanged += OnWindowSizeChanged;
-            motherOption = mother;
+            MotherOption = mother;
             InitializeComponent();
-            MotherWelcomeBanner.Content = $"Welcome {motherOption.FirstName} {motherOption.LastName}";
+            MotherWelcomeBanner.Content = $"Welcome {MotherOption.FirstName} {MotherOption.LastName}";
         }
 
         private void OnWindowSizeChanged(Object sender, SizeChangedEventArgs e)
@@ -42,12 +42,33 @@ namespace PLWPF
 
         private void RemoveMotherBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                var result = MessageBox.Show(
+                    $"Are you sure you want to remove {MotherOption.FirstName} {MotherOption.LastName}?",
+                    "Confirmation:",
+                    MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                if (result == MessageBoxResult.OK)
+                {
+                    MessageBox.Show(bl.RemoveMother(MotherOption.ID)
+                            ? $"{MotherOption.FirstName} {MotherOption.LastName} was removed!"
+                            : $"{MotherOption.FirstName} {MotherOption.LastName} wasn't removed!", "Info",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                    MainWindow.motherMain = new Mother();
+                    // MotherOption = new Mother();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void AddChildBtn_Click(object sender, RoutedEventArgs e)
         {
-            new AddChildWindow(motherOption).Show();
+            new AddChildWindow(MotherOption).Show();
         }
 
         private void AddContractBtn_Click(object sender, RoutedEventArgs e)
@@ -57,14 +78,21 @@ namespace PLWPF
 
         private void UpdateMotherBtn_Click(object sender, RoutedEventArgs e)
         {
+            var window = new UpdateMotherWindow(MotherOption);
+            window.Show();
+            window.Closed += OnMotherUpdateWindowChanged;
+        }
 
+        public void OnMotherUpdateWindowChanged(Object sender, EventArgs eventArgs)
+        {
+            MotherWelcomeBanner.Content = $"Welcome: {MotherOption.FirstName} {MotherOption.LastName}!";
         }
 
         private void UpdateChildBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                ChildrenList = bl.GetChildrenByMother(motherOption.ID).ToList();
+                ChildrenList = bl.GetChildrenByMother(MotherOption.ID).ToList();
                 ChooseChildDataGrid.ItemsSource = ChildrenList;
                 ChooseChildDataGrid.Visibility = Visibility.Visible;
                 ChildSelectedBackButton.Visibility = Visibility.Visible;
@@ -82,16 +110,17 @@ namespace PLWPF
 
         }
 
-        private void GetContractMotherBtn_Click(object sender, RoutedEventArgs e)
+        private void AllContractMotherBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var MotherContractsWindow = new MotherContractsWindow(MotherOption);
+            MotherContractsWindow.Show();
         }
 
         private void RemoveChildBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                ChildrenList = bl.GetChildrenByMother(motherOption.ID).ToList();
+                ChildrenList = bl.GetChildrenByMother(MotherOption.ID).ToList();
                 ChooseRemoveChildDataGrid.ItemsSource = ChildrenList;
                 ChooseRemoveChildDataGrid.Visibility = Visibility.Visible;
                 ChildRemoveSelectedBackButton.Visibility = Visibility.Visible;
