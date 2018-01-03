@@ -47,7 +47,7 @@ namespace PLWPF
 
         private void AddChildBtn_Click(object sender, RoutedEventArgs e)
         {
-            new AddChildWindow(motherOption).ShowDialog();
+            new AddChildWindow(motherOption).Show();
         }
 
         private void AddContractBtn_Click(object sender, RoutedEventArgs e)
@@ -62,12 +62,19 @@ namespace PLWPF
 
         private void UpdateChildBtn_Click(object sender, RoutedEventArgs e)
         {
-            ChildrenList = bl.GetChildrenByMother(motherOption.ID).ToList();
-            ChooseChildDataGrid.ItemsSource = ChildrenList;
-            ChooseChildDataGrid.Visibility = Visibility.Visible;
-            ChildSelectedBackButton.Visibility = Visibility.Visible;
-            ChildSelectedOKButton.Visibility = Visibility.Visible;
-            MotherOptionsBackButton.Visibility = Visibility.Collapsed;
+            try
+            {
+                ChildrenList = bl.GetChildrenByMother(motherOption.ID).ToList();
+                ChooseChildDataGrid.ItemsSource = ChildrenList;
+                ChooseChildDataGrid.Visibility = Visibility.Visible;
+                ChildSelectedBackButton.Visibility = Visibility.Visible;
+                ChildSelectedOKButton.Visibility = Visibility.Visible;
+                MotherOptionsBackButton.Visibility = Visibility.Collapsed;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void UpdateContractBtn_Click(object sender, RoutedEventArgs e)
@@ -82,7 +89,19 @@ namespace PLWPF
 
         private void RemoveChildBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                ChildrenList = bl.GetChildrenByMother(motherOption.ID).ToList();
+                ChooseRemoveChildDataGrid.ItemsSource = ChildrenList;
+                ChooseRemoveChildDataGrid.Visibility = Visibility.Visible;
+                ChildRemoveSelectedBackButton.Visibility = Visibility.Visible;
+                ChildRemoveSelectedOKButton.Visibility = Visibility.Visible;
+                MotherOptionsBackButton.Visibility = Visibility.Collapsed;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void RemoveContractBtn_Click(object sender, RoutedEventArgs e)
@@ -107,15 +126,51 @@ namespace PLWPF
             ChildSelectedBackButton.Visibility = Visibility.Collapsed;
             ChildSelectedOKButton.Visibility = Visibility.Collapsed;
             MotherOptionsBackButton.Visibility = Visibility.Visible;
+            ChooseChildDataGrid.SelectedIndex = -1;
         }
 
         private void ChildSelectedOKButton_OnClick(object sender, RoutedEventArgs e)
         {
-            new UpdateChildWindow((Child) ChooseChildDataGrid.SelectedItem).ShowDialog();
+            var selectedItem = (Child) ChooseChildDataGrid.SelectedItem;
+            if (selectedItem == null)
+                throw new Exception("No child has been selected!");
+            new UpdateChildWindow(selectedItem).Show();
             ChooseChildDataGrid.Visibility = Visibility.Collapsed;
             ChildSelectedBackButton.Visibility = Visibility.Collapsed;
             ChildSelectedOKButton.Visibility = Visibility.Collapsed;
             MotherOptionsBackButton.Visibility = Visibility.Visible;
+        }
+
+        private void ChildRemoveSelectedBackButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            ChooseRemoveChildDataGrid.Visibility = Visibility.Collapsed;
+            ChildRemoveSelectedBackButton.Visibility = Visibility.Collapsed;
+            ChildRemoveSelectedOKButton.Visibility = Visibility.Collapsed;
+            MotherOptionsBackButton.Visibility = Visibility.Visible;
+            ChooseRemoveChildDataGrid.SelectedIndex = -1;
+        }
+
+        private void ChildRemoveSelectedOKButton_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                Child selectedItem = (Child)ChooseRemoveChildDataGrid.SelectedItem;
+                if (selectedItem == null)
+                    throw new Exception("No child has been selected!");
+                if (bl.RemoveChild(selectedItem.ID))
+                {
+                    MessageBox.Show($"{selectedItem.Name} was deleted successfully!");
+                }
+                ChooseRemoveChildDataGrid.Visibility = Visibility.Collapsed;
+                ChildRemoveSelectedBackButton.Visibility = Visibility.Collapsed;
+                ChildRemoveSelectedOKButton.Visibility = Visibility.Collapsed;
+                MotherOptionsBackButton.Visibility = Visibility.Visible;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
