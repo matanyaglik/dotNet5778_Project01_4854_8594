@@ -22,7 +22,7 @@ namespace PLWPF
     /// </summary>
     public partial class AddContractWindow : Window
     {
-        private static Mother ContractMother = new Mother();
+        private static Mother ContractMother=new Mother();
         IBL bl = BLSingleton.GetBL;
         public AddContractWindow(Mother mother)
         {
@@ -33,17 +33,22 @@ namespace PLWPF
 
         private void ChooseChildComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var child = (Child)ChooseChildComboBox.SelectedItem;
-            List<Nanny> nannyList = new List<Nanny>();
-            new Thread((ThreadStart)delegate { nannyList = NannyList(child); }).Start();
-
+            var child =(Child) ChooseChildComboBox.SelectedItem;
+            List<Nanny> nannyList=new List<Nanny>();
+            new Thread((ThreadStart) delegate { nannyList = NannyList(child);}).Start();
+            
         }
 
         private List<Nanny> NannyList(Child child)
         {
             List<Nanny> nannyList;
             nannyList = BL_Tool.MatchingNannies(child.ID).ToList();
-            this.Dispatcher.Invoke(new Action(() => { nannyDataGrid.ItemsSource = nannyList; }));
+            this.Dispatcher.Invoke(new Action(() => { nannyDataGrid.ItemsSource = nannyList;
+                foreach (var nanny in nannyList)
+                {
+                    if(BL_Tool.MotherRequirements())
+                }
+            }));
             return nannyList;
         }
     }
