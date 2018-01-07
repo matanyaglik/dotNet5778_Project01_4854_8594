@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:be="clr-namespace:BE;assembly=BE"
         mc:Ignorable="d"
-        Title="UpdateMotherWindow" Height="522.204" Width="655.67" d:DataContext="{d:DesignInstance be:Mother}" ResizeMode="NoResize">
+        Title="UpdateMotherWindow" Height="584.868" Width="783.088" d:DataContext="{d:DesignInstance be:Mother}" ResizeMode="NoResize">
     <Grid>
         <Grid x:Name="UpdateMotherGrid" >
 
-            <Grid x:Name="InfoGrid" Height="Auto" >
+            <Grid x:Name="InfoGrid" Height="Auto" Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -65,7 +65,7 @@
                 <CheckBox x:Name="wantsElevatorCheckBox" VerticalAlignment="Center" Grid.Row="5" Margin="3" IsChecked="{Binding WantsElevator, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Grid.Column="1" Content="" TabIndex="10"/>
                 <Button Content="Update Mother" Grid.Column="2" Grid.Row="10" Click="OnUpdateMotherBtnClick"/>
                 <Button  Content="Cancel" Grid.Column="1"   Grid.Row="10" Click="CancelBtnClk" />
-                <Grid Name="SchedualeGrid" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7">
+                <Grid Name="SchedualeGrid" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -76,10 +76,10 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Day"  FontSize="20" Grid.Row="0" Grid.Column="0"/>
                     <Label Content="Sunday:"   Grid.Row="1" Grid.Column="0"  FontSize="15" />
@@ -109,6 +109,9 @@
                     <ComboBox  x:Name="EndTimeCmbx4" Grid.Column="3" Grid.Row="4" ItemsSource="{Binding ElementName= StartTimeCmbx1,Path=ItemsSource}"  IsEnabled="{Binding ElementName=Cb4,Path=IsChecked,NotifyOnSourceUpdated=True,Mode=OneWay }" />
                     <ComboBox x:Name="EndTimeCmbx5"  Grid.Column="3" Grid.Row="5" ItemsSource="{Binding ElementName= StartTimeCmbx1,Path=ItemsSource}"  IsEnabled="{Binding ElementName=Cb5,Path=IsChecked,NotifyOnSourceUpdated=True,Mode=OneWay }" />
                     <ComboBox  x:Name="EndTimeCmbx6" Grid.Column="3" Grid.Row="6" ItemsSource="{Binding ElementName= StartTimeCmbx1,Path=ItemsSource}"  IsEnabled="{Binding ElementName=Cb6,Path=IsChecked,NotifyOnSourceUpdated=True,Mode=OneWay }" />
+                </Grid>
+                <Grid x:Name="ImageGrid" Grid.ColumnSpan="2" Grid.Row="7">
+                    <Image Width="250" Height="250" Source="images/AppLogo.jpg"/>
                 </Grid>
             </Grid>
         </Grid>

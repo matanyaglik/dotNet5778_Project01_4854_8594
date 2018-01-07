@@ -22,11 +22,16 @@ namespace PLWPF
     /// </summary>
     public partial class AddContractWindow : Window
     {
+        private static Contract GlobalContract;
+        private static Child GlobalChild;
+        private static Nanny GlobalNanny;
         private static Mother ContractMother=new Mother();
         IBL bl = BLSingleton.GetBL;
         public AddContractWindow(Mother mother)
         {
             InitializeComponent();
+            GlobalChild=new Child();
+            GlobalContract=new Contract();
             ContractMother = mother;
             ChooseChildComboBox.ItemsSource = bl.GetChildrenByMother(mother.ID);
         }
@@ -34,6 +39,7 @@ namespace PLWPF
         private void ChooseChildComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var child =(Child) ChooseChildComboBox.SelectedItem;
+            GlobalChild = child;
             List<Nanny> nannyList=new List<Nanny>();
             new Thread((ThreadStart) delegate { nannyList = NannyList(child);}).Start();
             
@@ -50,6 +56,30 @@ namespace PLWPF
                     nannyDataGrid.RowBackground = boolArray ? new SolidColorBrush(Colors.Yellow) : new SolidColorBrush(Colors.Green);
             }));
             return nannyList;
+        }
+
+
+        private void AddContractCancelBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AddContratChooseNannyBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            GlobalNanny =(Nanny) nannyDataGrid.SelectedItem;
+            GlobalContract = new Contract()
+            {
+                ChildId = GlobalChild.ID,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+                HourlyWage = GlobalNanny.HourlyWage,
+                MonthlyWage = GlobalNanny.MonthlyWage,
+                MotherId = ContractMother.ID,
+                Rate = ContractMother.MonthlyOrHourly,
+                Salary = BL_Tool.CalculateSalary(GlobalNanny, ContractMother),
+                NannyId = GlobalNanny.ID
+            };
+
         }
     }
 }
