@@ -28,6 +28,10 @@ namespace PLWPF
             GetContractDataGrid.ItemsSource = bl.GetContracts(c => c.NannyId == nanny.ID).ToList();
         }
 
-       
+
+        private void BackBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

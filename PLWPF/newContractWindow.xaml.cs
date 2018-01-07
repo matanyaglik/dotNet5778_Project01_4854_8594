@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Shapes;
 using BE;
 using BL;
@@ -23,32 +25,44 @@ namespace PLWPF
     {
         private IBL bl = BLSingleton.GetBL;
         private Contract CurrentContract;
+        private Contract CopyContract;
         public newContractWindow(Contract contract)
         {
             InitializeComponent();
             CurrentContract = contract;
+            CopyContract = contract.GetCopy();
             DataContext = contract;
-            startDateDatePicker.SelectedDate = DateTime.Now;
-
+            
         }
 
 
         private void AddBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            var btnresult= MessageBox.Show("Add Contract?", "Comfirmation", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-           if(btnresult == MessageBoxResult.OK)
-                bl.AddContract(CurrentContract);
-         
+            try
+            {
+                if (CurrentContract.StartDate.CompareTo(CurrentContract.EndDate) > 0)
+                {
+                    throw new Exception("Start date must be before end date!");
+                }
+                var btnresult= MessageBox.Show("Add Contract?", "Confirmation", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                if (btnresult == MessageBoxResult.OK)
+                {
+                    CurrentContract.Signed = true;
+                    bl.AddContract(CurrentContract);
+                }
+                this.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"Error - {exception.Message}", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
+            CurrentContract = CopyContract;
             this.Close();
-        }
-
-        private void EndDateDatePicker_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }
