@@ -15,6 +15,7 @@ namespace PLWPF
 
             foreach (object o in LogicalTreeHelper.GetChildren(current))
             {
+               
                 if (o.GetType() == typeof(Button))
                 {
 
