@@ -49,6 +49,9 @@ namespace PLWPF
                 if (messege == MessageBoxResult.Yes)
                 {
                     bl.RemoveContract(((Contract) GetContractDataGrid.SelectedItem).ContractNumber);
+                    GetContractDataGrid.ItemsSource = bl.GetContracts(c => c.MotherId == MotherOptionsWindow.MotherOption.ID).ToList();
+
+
                 }
                 else
                     this.Close();
