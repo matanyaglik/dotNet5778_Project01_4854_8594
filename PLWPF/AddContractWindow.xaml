@@ -19,10 +19,10 @@
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="ChooseChildComboBox" Grid.Column="1" SelectionChanged="ChooseChildComboBox_OnSelectionChanged" Selected="ChooseChildComboBox_OnSelected" d:DataContext="{d:DesignInstance BE:Child}" Text="{Binding Name}"/>
+            <ComboBox x:Name="ChooseChildComboBox" Grid.Column="1" SelectionChanged="ChooseChildComboBox_OnSelectionChanged" d:DataContext="{d:DesignInstance BE:Child}" Text="{Binding Name}"/>
             <Label Content="Please choose a Child:" VerticalAlignment="Center" />
         </Grid>
-        <DataGrid x:Name="nannyDataGrid" d:DataContext="{d:DesignInstance BE:Nanny}" AutoGenerateColumns="False" Grid.Row="1">
+        <DataGrid x:Name="nannyDataGrid" d:DataContext="{d:DesignInstance BE:Nanny}" AutoGenerateColumns="False" Grid.Row="1" >
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="firstNameColumn" Header="First Name" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>
