@@ -44,10 +44,10 @@ namespace PLWPF
             List<Nanny> nannyList;
             nannyList = BL_Tool.MatchingNannies(child.ID).ToList();
             this.Dispatcher.Invoke(new Action(() => { nannyDataGrid.ItemsSource = nannyList;
-                foreach (var nanny in nannyList)
-                {
-                    if(BL_Tool.MotherRequirements())
-                }
+                //foreach (var nanny in nannyList)
+                //{
+                //    if(BL_Tool.MotherRequirements())
+                //}
             }));
             return nannyList;
         }

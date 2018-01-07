@@ -90,7 +90,7 @@ namespace BL
                 ID = 311,
                 Address = "HaTavor 4, Khashmona'im",
                 FirstName = "Aliza",
-                LastName = "shtauber",
+                LastName = "Shtauber",
                 MonthlyOrHourly = MonthlyOrHourly.Monthly,
                 SearchArea = "HaTavor 4, Khashmona'im",
                 Schedule = new Schedule[6]
@@ -107,6 +107,7 @@ namespace BL
                 MaxDistance = 25,
                 WantedExperience = 4,
                 WantsElevator = true
+
             });
             this.AddMother(new Mother
             {

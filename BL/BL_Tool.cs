@@ -83,8 +83,8 @@ namespace BL
                 {
                     if (!mother.Schedule[i].IsWorking)
                         continue;
-                    if (mother.Schedule[i].StartTime.CompareTo(nanny.Schedule[i].StartTime) <= 0 ||
-                        mother.Schedule[i].EndTime.CompareTo(nanny.Schedule[i].EndTime) >= 0)
+                    if (mother.Schedule[i].StartTime.CompareTo(nanny.Schedule[i].StartTime) < 0 ||
+                        mother.Schedule[i].EndTime.CompareTo(nanny.Schedule[i].EndTime) > 0)
                     {
                         return false;
                     }
