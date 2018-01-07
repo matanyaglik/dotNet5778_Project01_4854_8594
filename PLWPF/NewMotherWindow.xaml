@@ -7,9 +7,9 @@
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.NewMotherWindow"
         mc:Ignorable="d"
     d:DataContext="{d:DesignInstance BE:Mother}"
-        Title="NewMotherWindow" SizeChanged="NewMotherWindow_OnSizeChanged" Height="511" Width="518.4">
+        Title="NewMotherWindow" SizeChanged="NewMotherWindow_OnSizeChanged" Height="537" Width="581.4" ResizeMode="NoResize">
 
-    <Grid x:Name ="NewMotherGrid" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid x:Name ="NewMotherGrid"  HorizontalAlignment="Center" VerticalAlignment="Center" >
 
         <Grid x:Name="MotherGridInfo" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
@@ -29,7 +29,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="2" Content="Address:"/>
+            <Label VerticalAlignment="Center"  Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="2" Content="Address:"/>
             <TextBox x:Name="addressTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="3" TabIndex="1"/>
             <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Budget:"/>
             <TextBox x:Name="budgetTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Budget, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="1" TabIndex="8"/>
@@ -57,7 +57,8 @@
             <TextBox x:Name="wantedExperienceTextBox" Width="120" VerticalAlignment="Center" Text="{Binding WantedExperience, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="3" TabIndex="7"/>
             <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Wants Elevator:"/>
             <CheckBox x:Name="wantsElevatorCheckBox" VerticalAlignment="Center" Grid.Row="5" Margin="3" IsChecked="{Binding WantsElevator, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Grid.Column="1" Content="" TabIndex="10"/>
-            <Grid x:Name="MotherScheduleGrid" d:DataContext="{d:DesignInstance BE:Schedule}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7">
+
+            <Grid x:Name="MotherScheduleGrid" d:DataContext="{d:DesignInstance BE:Schedule}" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
@@ -102,8 +103,12 @@
                 <ComboBox x:Name="EndTimeCmbx5" Grid.Column="3" Grid.Row="5" IsEnabled="{Binding ElementName=Cb5,Path=IsChecked,NotifyOnSourceUpdated=True,Mode=OneWay}" ItemsSource="{Binding ElementName= StartTimeCmbx1,Path=ItemsSource}" TabIndex="32"/>
                 <ComboBox x:Name="EndTimeCmbx6" Grid.Column="3" Grid.Row="6" IsEnabled="{Binding ElementName=Cb6,Path=IsChecked,NotifyOnSourceUpdated=True,Mode=OneWay}" ItemsSource="{Binding ElementName= StartTimeCmbx1,Path=ItemsSource}" TabIndex="34"/>
             </Grid>
-            <Button x:Name="AddMotherBtn" Content="  Add mother  " Grid.Column="1" Grid.Row="8" Click="AddMotherBtn_OnClick" UseLayoutRounding="False" />
-            <Button x:Name="CancelMotherBtn" Content="Cancel" Grid.Column="2" Grid.Row="8" Click="CancelMotherBtn_OnClick"/>
+            <Button x:Name="AddMotherBtn" Style="{StaticResource {x:Type Control}}" Content="  Add mother  " Grid.Column="1" Grid.Row="8" Click="AddMotherBtn_OnClick" UseLayoutRounding="False" />
+            <Button x:Name="CancelMotherBtn" Style="{StaticResource {x:Type Control}}" Content="Cancel" Grid.Column="2" Grid.Row="8" Click="CancelMotherBtn_OnClick"/>
+            <Grid x:Name="ImageGrid" Grid.ColumnSpan="2" Grid.Row="7">
+                <Image Width="250" Height="250" Source="images/AppLogo.jpg"/>
+            </Grid>
+
         </Grid>
 
     </Grid>
