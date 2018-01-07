@@ -29,6 +29,7 @@ namespace PLWPF
             InitializeComponent();
             ContractMother = mother;
             ChooseChildComboBox.ItemsSource = bl.GetChildrenByMother(mother.ID);
+            
         }
 
         private void ChooseChildComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

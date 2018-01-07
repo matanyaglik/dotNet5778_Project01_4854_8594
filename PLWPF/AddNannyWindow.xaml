@@ -67,7 +67,7 @@
             <TextBox x:Name="telephoneTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Telephone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="3" TabIndex="6"/>
             <Label VerticalAlignment="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="2" Content="Vacation:"/>
             <CheckBox x:Name="vacationCheckBox" VerticalAlignment="Center" Grid.Row="7" Margin="3" IsChecked="{Binding Vacation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Grid.Column="3" Content="" TabIndex="16"/>
-            <Button x:Name="AddNannyBtn" Content="Add nanny" Grid.Column="2" Grid.Row="10" Click="OnAddNannyBtnClick" TabIndex="35"/>
+            <Button x:Name="AddNannyBtn"  Content="Add nanny" Grid.Column="2" Grid.Row="10" Click="OnAddNannyBtnClick" TabIndex="35"/>
             <Grid x:Name="NannySceduleGrid" d:DataContext="{d:DesignInstance be:Schedule}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="9">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
