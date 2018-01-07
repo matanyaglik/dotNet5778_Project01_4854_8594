@@ -31,6 +31,10 @@ namespace PLWPF
 
         }
 
+        private void ViewContractBackBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
 

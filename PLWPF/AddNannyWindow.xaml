@@ -6,15 +6,14 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:be="clr-namespace:BE;assembly=BE" x:Class="PLWPF.AddNannyWindow"
         mc:Ignorable="d"
-        Title="AddNannyWindow" d:DataContext="{d:DesignInstance be:Nanny}">
+        Title="AddNannyWindow" d:DataContext="{d:DesignInstance be:Nanny}" Height="568" Width="642">
 
 
 
     <!--Height="{Binding ElementName=AddNannyGrid,Path=ActualHeight}" Width="{Binding ElementName=AddNannyGrid,Path=ActualWidth}"-->
     <Grid>
-        <Grid x:Name="AddNannyGrid" Height="auto">
+        <Grid x:Name="AddNannyGrid" Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -67,7 +66,7 @@
             <TextBox x:Name="telephoneTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Telephone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="3" TabIndex="6"/>
             <Label VerticalAlignment="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="2" Content="Vacation:"/>
             <CheckBox x:Name="vacationCheckBox" VerticalAlignment="Center" Grid.Row="7" Margin="3" IsChecked="{Binding Vacation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Grid.Column="3" Content="" TabIndex="16"/>
-            <Button x:Name="AddNannyBtn"  Content="Add nanny" Grid.Column="2" Grid.Row="10" Click="OnAddNannyBtnClick" TabIndex="35"/>
+            <Button x:Name="AddNannyBtn" Style="{StaticResource {x:Type Control}}" Content="Add nanny" Grid.Column="2" Grid.Row="10" Click="OnAddNannyBtnClick" TabIndex="35"/>
             <Grid x:Name="NannySceduleGrid" d:DataContext="{d:DesignInstance be:Schedule}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="9">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -114,7 +113,7 @@
                 <ComboBox x:Name="EndTimeCmbx5" Grid.Column="3" Grid.Row="5" IsEnabled="{Binding ElementName=Cb5,Path=IsChecked,NotifyOnSourceUpdated=True,Mode=OneWay}" ItemsSource="{Binding ElementName= StartTimeCmbx1,Path=ItemsSource}" TabIndex="32"/>
                 <ComboBox x:Name="EndTimeCmbx6" Grid.Column="3" Grid.Row="6" IsEnabled="{Binding ElementName=Cb6,Path=IsChecked,NotifyOnSourceUpdated=True,Mode=OneWay}" ItemsSource="{Binding ElementName= StartTimeCmbx1,Path=ItemsSource}" TabIndex="34"/>
             </Grid>
-            <Button x:Name="CancelAddNannyBtn" Content="Cancel" Grid.Column="1" Grid.Row="10" Click="CancelAddNannyBtn_OnClick"/>
+            <Button x:Name="CancelAddNannyBtn" Content="Cancel" Grid.Column="1" Grid.Row="10" Click="CancelAddNannyBtn_OnClick" Style="{StaticResource {x:Type Control}}"/>
 
         </Grid>
 

@@ -61,6 +61,9 @@
       <DependentUpon>AddContractWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChangeTextSize.cs" />
+    <Compile Include="ChooseChildUpdateContract.xaml.cs">
+      <DependentUpon>ChooseChildUpdateContract.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GetAllNannyContractWindow.xaml.cs">
       <DependentUpon>GetAllNannyContractWindow.xaml</DependentUpon>
     </Compile>
@@ -76,8 +79,14 @@
     <Compile Include="NewMotherWindow.xaml.cs">
       <DependentUpon>NewMotherWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RemoveContractWindow.xaml.cs">
+      <DependentUpon>RemoveContractWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateChildWindow.xaml.cs">
       <DependentUpon>UpdateChildWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateContractWindow.xaml.cs">
+      <DependentUpon>UpdateContractWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdateMotherWindow.xaml.cs">
       <DependentUpon>UpdateMotherWindow.xaml</DependentUpon>
@@ -94,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNannyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChooseChildUpdateContract.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,11 +149,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RemoveContractWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="res\Resources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateChildWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateContractWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

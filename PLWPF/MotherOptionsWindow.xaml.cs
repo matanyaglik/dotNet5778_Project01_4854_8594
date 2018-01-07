@@ -68,13 +68,13 @@ namespace PLWPF
 
         private void AddChildBtn_Click(object sender, RoutedEventArgs e)
         {
-            new AddChildWindow(MotherOption).Show();
+            new AddChildWindow(MotherOption).ShowDialog();
         }
 
         private void AddContractBtn_Click(object sender, RoutedEventArgs e)
         {
             var addContractWindow = new AddContractWindow(MotherOption);
-            addContractWindow.Show();
+            addContractWindow.ShowDialog();
         }
 
         private void UpdateMotherBtn_Click(object sender, RoutedEventArgs e)
@@ -108,13 +108,14 @@ namespace PLWPF
 
         private void UpdateContractBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var chooseChildContractWindow=new ChooseChildUpdateContract(MotherOption);
+            chooseChildContractWindow.ShowDialog();
         }
 
         private void AllContractMotherBtn_Click(object sender, RoutedEventArgs e)
         {
             var MotherContractsWindow = new MotherContractsWindow(MotherOption);
-            MotherContractsWindow.Show();
+            MotherContractsWindow.ShowDialog();
         }
 
         private void RemoveChildBtn_Click(object sender, RoutedEventArgs e)
@@ -136,7 +137,8 @@ namespace PLWPF
 
         private void RemoveContractBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var removeWindow=new RemoveContractWindow(MotherOption);
+            removeWindow.ShowDialog();
         }
 
         private void MotherOptionsBackButton_Click(object sender, RoutedEventArgs e)

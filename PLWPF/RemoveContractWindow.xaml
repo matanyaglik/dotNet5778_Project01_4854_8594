@@ -1,20 +1,18 @@
-﻿<Window x:Class="PLWPF.MotherContractsWindow"
+﻿<Window x:Class="PLWPF.RemoveContractWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
-        xmlns:be="clr-namespace:BE;assembly=BE"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance be:Contract}"
-        Title="MotherContractsWindow" Width="587" Height="387.34">
+        Title="RemoveContractWindow" Height="300" Width="732">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="getContractMotherGrid" Grid.RowSpan="2" >
-            <DataGrid x:Name="GetContractDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid x:Name="GetContractDataGrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="GetContractDataGrid_OnSelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Contract #" Width="*" Binding="{Binding ContractNumber}" />
                     <DataGridTextColumn Header="Nanny ID" Width="*" Binding="{Binding NannyId}" />
@@ -30,7 +28,12 @@
             </DataGrid>
         </Grid>
         <Grid Grid.Row="1" >
-            <Button x:Name="ViewContractBackBtn" Content="Back" Style="{StaticResource ResourceKey={x:Type Control}}" Click="ViewContractBackBtn_OnClick"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="CancelBtn" Content="Cancel" Style="{StaticResource ResourceKey={x:Type Control}}" Click="CancelBtn_Click"/>
+            <Button x:Name="RemoveBtn" Content="Remove contract" Grid.Column="1" Style="{StaticResource ResourceKey={x:Type Control}}" Click="RemoveBtn_Click"/>
         </Grid>
     </Grid>
 </Window>

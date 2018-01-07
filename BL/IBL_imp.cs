@@ -264,7 +264,6 @@ namespace BL
                 if (BL_Tool.OverlappingTime(nanny, GetNanny(item.NannyId)))
                 {
                     throw new Exception($"Warning:{child.Name} is already registered in those hours");
-
                 }
             }
             contract.Signed = true;
