@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -23,27 +22,28 @@ namespace PLWPF
     /// </summary>
     public partial class AddContractWindow : Window
     {
-        private Mother contractMother=new Mother();
-        private IBL bl=BLSingleton.GetBL;
+        private static Mother ContractMother=new Mother();
+        IBL bl = BLSingleton.GetBL;
         public AddContractWindow(Mother mother)
         {
             InitializeComponent();
-            contractMother = mother;
+            ContractMother = mother;
             ChooseChildComboBox.ItemsSource = bl.GetChildrenByMother(mother.ID);
-            //BackgroundWorker worker = new BackgroundWorker();
-            //worker.RunWorkerAsync(BL_Tool.MatchingNannies(child.ID));
         }
 
-        private void ChooseChildComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ChooseChildComboBox_OnSelected(object sender, RoutedEventArgs e)
         {
-            var child = (Child) ChooseChildComboBox.SelectedItem;
-            var nannyList=new List<Nanny>();
-            new Thread((ThreadStart)delegate { nannyList = BL_Tool.MatchingNannies(child.ID).ToList(); }).Start();
-           
+            
+        }
 
+        private void ChooseChildComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var child =(Child) ChooseChildComboBox.SelectedItem;
+            List<Nanny> nannyList=new List<Nanny>();
+            new Thread((ThreadStart) delegate { nannyList = BL_Tool.MatchingNannies(child.ID).ToList();}).Start();
 
         }
 
-      
+       
     }
 }
