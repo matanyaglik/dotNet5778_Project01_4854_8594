@@ -35,7 +35,7 @@ namespace PLWPF
 
         private void AddBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            var btnresult= MessageBox.Show("Add Contract?", "Comfirmation", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            var btnresult= MessageBox.Show("Add Contract?", "Confirmation", MessageBoxButton.OKCancel, MessageBoxImage.Information);
            if(btnresult == MessageBoxResult.OK)
                 bl.AddContract(CurrentContract);
          
@@ -46,9 +46,9 @@ namespace PLWPF
             this.Close();
         }
 
-        private void EndDateDatePicker_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //private void EndDateDatePicker_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

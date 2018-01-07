@@ -79,8 +79,8 @@ namespace PLWPF
 
 
             };
-            var contractWindow=new newContractWindow(GlobalContract);
-            contractWindow.Show();
+          new newContractWindow(GlobalContract).ShowDialog();
+            
 
         }
     }

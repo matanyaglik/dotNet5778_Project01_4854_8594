@@ -27,7 +27,7 @@
             <Label Content="Child Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4.6,0,4.8" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="childIdTextBox"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="4.4,5.6,0,5.8" Grid.Row="1" Text="{Binding ChildId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="End Date:" Grid.Column="2" HorizontalAlignment="Left" Margin="3.4,4,0,4.4" Grid.Row="0" VerticalAlignment="Center"/>
-            <DatePicker x:Name="endDateDatePicker" SelectedDateChanged="EndDateDatePicker_OnSelectedDateChanged"  Grid.Column="3" HorizontalAlignment="Left" Margin="4.4,5,-0.4,5.4" Grid.Row="0" SelectedDate="{Binding EndDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            <DatePicker x:Name="endDateDatePicker"  Grid.Column="3" HorizontalAlignment="Left" Margin="4.4,5,-0.4,5.4" Grid.Row="0" SelectedDate="{Binding EndDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
             <Label Content="Hourly Wage:" Grid.Column="2" HorizontalAlignment="Left" Margin="3.4,9.2,0,5.855" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="hourlyWageTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="24" Margin="4.4,10.2,0,6.855" Grid.Row="4" Text="{Binding HourlyWage, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Interview:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4.6,0,3.8" Grid.Row="3" VerticalAlignment="Center"/>
