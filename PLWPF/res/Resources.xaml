@@ -29,4 +29,9 @@
         <Setter Property="FontFamily" Value="Arial"/>
         <Setter Property="Margin" Value="1.5"/>
     </Style>
+
+    <Style x:Name="DataGridStyle" TargetType="DataGrid" >
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
 </ResourceDictionary>

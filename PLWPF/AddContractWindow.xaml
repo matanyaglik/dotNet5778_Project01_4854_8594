@@ -7,8 +7,8 @@
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.AddContractWindow"
         mc:Ignorable="d"
         Title="AddContractWindow" Height="300" Width="399">
-   
-    <Grid x:Name="MainContractGrid">
+
+    <Grid x:Name="MainContractGrid" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="5*"/>
@@ -19,10 +19,17 @@
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="ChooseChildComboBox" Grid.Column="1" DisplayMemberPath="Name" SelectionChanged="ChooseChildComboBox_OnSelectionChanged" d:DataContext="{d:DesignInstance BE:Child}"/>
+            <ComboBox x:Name="ChooseChildComboBox" Grid.Column="1" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Type Control}}" DisplayMemberPath="Name" SelectionChanged="ChooseChildComboBox_OnSelectionChanged" d:DataContext="{d:DesignInstance BE:Child}">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFCDCDCD"/>
+                        <GradientStop Color="#FFB815F5" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
             <Label Content="Please choose a Child:" VerticalAlignment="Center" />
         </Grid>
-        <DataGrid x:Name="nannyDataGrid" Width="Auto" d:DataContext="{d:DesignInstance BE:Nanny}" AutoGenerateColumns="False" Grid.Row="1" >
+        <DataGrid x:Name="nannyDataGrid" Width="Auto" d:DataContext="{d:DesignInstance BE:Nanny}" AutoGenerateColumns="False" Grid.Row="1" SelectionChanged="NannyDataGrid_OnSelectionChanged">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="firstNameColumn" Header="First Name" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
@@ -156,8 +163,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Button"/>
-            <Button Content="Button" Grid.Column="1"/>
+            <Button x:Name="Cancel" Content="Cancel" Click="Cancel_OnClick"/>
+            <Button  x:Name="AddBtn" IsEnabled="False" Content="Add contract" Grid.Column="1" Click="NewContract_OnClick"/>
         </Grid>
 
     </Grid>

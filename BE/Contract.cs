@@ -27,8 +27,11 @@ namespace BE
         public override string ToString()
         {
            return this.ToStringProperty();
+        }
 
-            
+        public Contract GetCopy()
+        {
+            return (Contract)this.MemberwiseClone();
         }
     }
 }

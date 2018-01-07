@@ -175,7 +175,7 @@ namespace PLWPF
         private void NannyOptionGetContractBtn_OnClick(object sender, RoutedEventArgs e)
         {
             var NannyContractWindow =new GetAllNannyContractWindow(nannyMain);
-            NannyContractWindow.Show();
+            NannyContractWindow.ShowDialog();
         }
 
         public void helloWorld()
