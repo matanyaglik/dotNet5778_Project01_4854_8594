@@ -61,16 +61,16 @@ namespace BL
                 Address = "Dan Pagis 11, Jerusalem",
                 Schedule = new Schedule[6]
                 {
-                    new Schedule() {EndTime = new Time(16, 00), IsWorking = true, StartTime = new Time(8, 30)},
-                    new Schedule() {EndTime = new Time(16, 00), IsWorking = true, StartTime = new Time(8, 30)},
-                    new Schedule() {EndTime = new Time(16, 00), IsWorking = true, StartTime = new Time(8, 30)},
-                    new Schedule() {EndTime = new Time(16, 00), IsWorking = true, StartTime = new Time(8, 30)},
-                    new Schedule() {EndTime = new Time(16, 00), IsWorking = true, StartTime = new Time(8, 30)},
-                    new Schedule() {EndTime = new Time(16, 00), IsWorking = true, StartTime = new Time(8, 30)}
+                    new Schedule() {IsWorking = true, StartTime = new Time(8, 30), EndTime = new Time(15, 30)},
+                    new Schedule() {IsWorking = true, StartTime = new Time(8, 30), EndTime = new Time(15, 30)},
+                    new Schedule() {IsWorking = true, StartTime = new Time(8, 30), EndTime = new Time(15, 30)},
+                    new Schedule() {IsWorking = false, StartTime = new Time(8, 30), EndTime = new Time(15, 30)},
+                    new Schedule() {IsWorking = true, StartTime = new Time(8, 30), EndTime = new Time(15, 30)},
+                    new Schedule() {IsWorking = true, StartTime = new Time(8, 30), EndTime = new Time(15, 30)}
                 },
                 ID = 456,
                 Birthday = new DateTime(day: 23, month: 11, year: 1991),
-                Experience = 0,
+                Experience =5,
                 FirstName = "Sharon",
                 LastName = "Levi",
                 Floor = 0,
@@ -79,9 +79,9 @@ namespace BL
                 MinimumAge = 3,
                 MaximumAge = 36,
                 KidsCapacity = 6,
-                MonthlyWage = 10000,
-                Vacation = false,
-                KosherFood = false,
+                MonthlyWage = 3000,
+                Vacation = true,
+                KosherFood = true,
                 Recommendation = "very good!",
                 Telephone = "0545444564"
             });
@@ -90,7 +90,7 @@ namespace BL
                 ID = 311,
                 Address = "HaTavor 4, Khashmona'im",
                 FirstName = "Aliza",
-                LastName = "Shtauber",
+                LastName = "shtauber",
                 MonthlyOrHourly = MonthlyOrHourly.Monthly,
                 SearchArea = "HaTavor 4, Khashmona'im",
                 Schedule = new Schedule[6]
@@ -104,10 +104,9 @@ namespace BL
                 },
                 Telephone = "0524847200",
                 Budget = 25000,
-                MaxDistance = 25,
+                MaxDistance = 500,
                 WantedExperience = 4,
-                WantsElevator = true
-
+                WantsElevator = true, KosherFood = true, Recommendation =true, Vacation = true
             });
             this.AddMother(new Mother
             {

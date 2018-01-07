@@ -43,11 +43,11 @@ namespace PLWPF
         {
             List<Nanny> nannyList;
             nannyList = BL_Tool.MatchingNannies(child.ID).ToList();
+            var boolArray =
+                BL.BL_Tool.MotherRequirements(bl.GetNanny(nannyList[0].ID), child, bl.GetMother(child.MotherID)).Any(n=>n==false);
+
             this.Dispatcher.Invoke(new Action(() => { nannyDataGrid.ItemsSource = nannyList;
-                //foreach (var nanny in nannyList)
-                //{
-                //    if(BL_Tool.MotherRequirements())
-                //}
+                    nannyDataGrid.RowBackground = boolArray ? new SolidColorBrush(Colors.Yellow) : new SolidColorBrush(Colors.Green);
             }));
             return nannyList;
         }
