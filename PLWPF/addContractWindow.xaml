@@ -156,8 +156,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="AddContractCancelBtn" Content="Cancel" Click="AddContractCancelBtn_OnClick"/>
-            <Button x:Name="AddContratChooseNannyBtn" Content="Choose nanny" Grid.Column="1" Click="AddContratChooseNannyBtn_OnClick"/>
+            <Button Content="Button"/>
+            <Button Content="Button" Grid.Column="1"/>
         </Grid>
 
     </Grid>
