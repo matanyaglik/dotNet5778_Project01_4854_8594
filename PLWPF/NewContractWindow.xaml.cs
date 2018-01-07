@@ -11,30 +11,44 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
+using BL;
 
 namespace PLWPF
 {
     /// <summary>
-    /// Interaction logic for NewContractWindow.xaml
+    /// Interaction logic for newContractWindow.xaml
     /// </summary>
-    public partial class NewContractWindow : Window
+    public partial class newContractWindow : Window
     {
-        public NewContractWindow()
+        private IBL bl = BLSingleton.GetBL;
+        private Contract CurrentContract;
+        public newContractWindow(Contract contract)
         {
             InitializeComponent();
+            CurrentContract = contract;
+            DataContext = contract;
+            startDateDatePicker.SelectedDate = DateTime.Now;
+
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
 
+        private void AddBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var btnresult= MessageBox.Show("Add Contract?", "Comfirmation", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+           if(btnresult == MessageBoxResult.OK)
+                bl.AddContract(CurrentContract);
+         
         }
 
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
 
-            System.Windows.Data.CollectionViewSource contractViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("contractViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // contractViewSource.Source = [generic data source]
+        private void EndDateDatePicker_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

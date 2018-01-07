@@ -22,7 +22,7 @@
             <ComboBox x:Name="ChooseChildComboBox" Grid.Column="1" DisplayMemberPath="Name" SelectionChanged="ChooseChildComboBox_OnSelectionChanged" d:DataContext="{d:DesignInstance BE:Child}"/>
             <Label Content="Please choose a Child:" VerticalAlignment="Center" />
         </Grid>
-        <DataGrid x:Name="nannyDataGrid" Width="Auto" d:DataContext="{d:DesignInstance BE:Nanny}" AutoGenerateColumns="False" Grid.Row="1" IsReadOnly="True" >
+        <DataGrid x:Name="nannyDataGrid" Width="Auto" d:DataContext="{d:DesignInstance BE:Nanny}" AutoGenerateColumns="False" Grid.Row="1" >
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="firstNameColumn" Header="First Name" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
@@ -156,8 +156,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="NewContract" Content="Cancel" Margin="5" Click="NewContract_OnClick"/>
-            <Button x:Name="cancel" Content="Choose nanny" Grid.Column="1" Margin="5" Click="Cancel_OnClick"   />
+            <Button Content="Button"/>
+            <Button Content="Button" Grid.Column="1"/>
         </Grid>
 
     </Grid>

@@ -22,16 +22,13 @@ namespace PLWPF
     /// </summary>
     public partial class AddContractWindow : Window
     {
-        private static Contract GlobalContract;
-        private static Child GlobalChild;
-        private static Nanny GlobalNanny;
-        private static Mother ContractMother=new Mother();
+        private  Mother ContractMother=new Mother();
+        private Contract GlobalContract;
+        private Child GlobalChild;
         IBL bl = BLSingleton.GetBL;
         public AddContractWindow(Mother mother)
         {
             InitializeComponent();
-            GlobalChild=new Child();
-            GlobalContract=new Contract();
             ContractMother = mother;
             ChooseChildComboBox.ItemsSource = bl.GetChildrenByMother(mother.ID);
             
@@ -39,10 +36,11 @@ namespace PLWPF
 
         private void ChooseChildComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var child =(Child) ChooseChildComboBox.SelectedItem;
-            GlobalChild = child;
+            GlobalChild=new Child();
+            GlobalChild =(Child) ChooseChildComboBox.SelectedItem;
+            
             List<Nanny> nannyList=new List<Nanny>();
-            new Thread((ThreadStart) delegate { nannyList = NannyList(child);}).Start();
+            new Thread((ThreadStart) delegate { nannyList = NannyList(GlobalChild);}).Start();
             
         }
 
@@ -59,27 +57,30 @@ namespace PLWPF
             return nannyList;
         }
 
+       
 
-        private void AddContractCancelBtn_OnClick(object sender, RoutedEventArgs e)
+        private void Cancel_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void AddContratChooseNannyBtn_OnClick(object sender, RoutedEventArgs e)
+        private void NewContract_OnClick(object sender, RoutedEventArgs e)
         {
-            GlobalNanny =(Nanny) nannyDataGrid.SelectedItem;
+            Nanny nanny=(Nanny)nannyDataGrid.SelectedItem;
             GlobalContract = new Contract()
             {
                 ChildId = GlobalChild.ID,
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now,
-                HourlyWage = GlobalNanny.HourlyWage,
-                MonthlyWage = GlobalNanny.MonthlyWage,
                 MotherId = ContractMother.ID,
+                NannyId = nanny.ID,
+                HourlyWage = nanny.HourlyWage,
+                MonthlyWage = nanny.MonthlyWage,
                 Rate = ContractMother.MonthlyOrHourly,
-                Salary = BL_Tool.CalculateSalary(GlobalNanny, ContractMother),
-                NannyId = GlobalNanny.ID
+                Salary = BL_Tool.CalculateSalary(nanny, ContractMother),
+
+
             };
+            var contractWindow=new newContractWindow(GlobalContract);
+            contractWindow.Show();
 
         }
     }
