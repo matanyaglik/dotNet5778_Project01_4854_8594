@@ -7,7 +7,7 @@
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.AddContractWindow"
         mc:Ignorable="d"
         Title="AddContractWindow" Height="300" Width="1161">
-   
+
     <Grid x:Name="MainContractGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="ChooseChildComboBox" Grid.Column="1" SelectionChanged="ChooseChildComboBox_OnSelectionChanged" d:DataContext="{d:DesignInstance BE:Child}" Text="{Binding Name}"/>
+            <ComboBox x:Name="ChooseChildComboBox" Grid.Column="1" SelectionChanged="ChooseChildComboBox_OnSelectionChanged" DisplayMemberPath="Name" d:DataContext="{d:DesignInstance BE:Child}" Text="{Binding Name}"/>
             <Label Content="Please choose a Child:" VerticalAlignment="Center" />
         </Grid>
         <DataGrid x:Name="nannyDataGrid" Width="Auto" d:DataContext="{d:DesignInstance BE:Nanny}" AutoGenerateColumns="False" Grid.Row="1" >
@@ -139,6 +139,27 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Grid Grid.Row="2" >
+            <Grid.Resources>
+               <Style x:Name="Style" TargetType="Button">
+                    <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="FontWeight" Value="Bold" />
+                   <Setter Property="Background" Value="White"/>
+                   <Setter Property="Foreground" Value="#FF97536F"/>
+                   <Setter Property= "FontFamily" Value="Arial"/> 
+                   <Setter Property="BorderBrush" Value="#FF7C143F" />
+                   <Setter Property="BorderThickness" Value="3"/>
+                   <Setter Property="Margin" Value="5"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="288*"/>
+                <ColumnDefinition Width="289*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Button" Grid.Column="0" />
+            <Button Content="Button" Grid.Column="1" />
+        </Grid>
+      
 
     </Grid>
 </Window>
