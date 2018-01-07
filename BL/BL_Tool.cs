@@ -197,7 +197,7 @@ namespace BL
 
 
         /// <summary>
-        /// function that finds mathing nannies based on the mother requests and returns the closest 5 if there is no perfect match
+        /// function that finds matching nannies based on the mother requests and returns the closest 5 if there is no perfect match
         /// </summary>
         /// <param name="childId"></param>
         /// <returns></returns>
