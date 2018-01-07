@@ -36,7 +36,7 @@ namespace PLWPF
             this.SizeChanged += OnWindowSizeChanged;
         }
 
-        //I LOVE YOU nachum
+       
 
         private void MotherEnteryBtn_Click(object sender, RoutedEventArgs e)
         {
