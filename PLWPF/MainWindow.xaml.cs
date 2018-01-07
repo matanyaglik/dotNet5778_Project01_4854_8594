@@ -36,8 +36,6 @@ namespace PLWPF
             this.SizeChanged += OnWindowSizeChanged;
         }
 
-        //I LOVE YOU 
-
         private void MotherEnteryBtn_Click(object sender, RoutedEventArgs e)
         {
             MotherMenuGrid.Visibility = Visibility.Visible;
