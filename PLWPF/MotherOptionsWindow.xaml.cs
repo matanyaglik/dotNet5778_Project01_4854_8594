@@ -73,7 +73,8 @@ namespace PLWPF
 
         private void AddContractBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var addContractWindow = new AddContractWindow(MotherOption);
+            addContractWindow.Show();
         }
 
         private void UpdateMotherBtn_Click(object sender, RoutedEventArgs e)

@@ -31,19 +31,25 @@ namespace PLWPF
             ChooseChildComboBox.ItemsSource = bl.GetChildrenByMother(mother.ID);
         }
 
-        private void ChooseChildComboBox_OnSelected(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void ChooseChildComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var child =(Child) ChooseChildComboBox.SelectedItem;
             List<Nanny> nannyList=new List<Nanny>();
-            new Thread((ThreadStart) delegate { nannyList = BL_Tool.MatchingNannies(child.ID).ToList();}).Start();
-
+            new Thread((ThreadStart) delegate { nannyList = NannyList(child);}).Start();
+            
         }
 
-       
+        private List<Nanny> NannyList(Child child)
+        {
+            List<Nanny> nannyList;
+            nannyList = BL_Tool.MatchingNannies(child.ID).ToList();
+            this.Dispatcher.Invoke(new Action(() => { nannyDataGrid.ItemsSource = nannyList;
+                foreach (var nanny in nannyList)
+                {
+                    if(BL_Tool.MotherRequirements())
+                }
+            }));
+            return nannyList;
+        }
     }
 }
