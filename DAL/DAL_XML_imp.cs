@@ -10,9 +10,9 @@ namespace DAL
 {
     internal class Dal_XML_imp : IDal
     {
-        public void AddMother(Mother m)
+        public void AddMother(Mother mother)
         {
-           
+           bool p=from x in 
             DS.DSxml.Mothers.Add(m.toXML());
             DS.DSxml.SaveMothers();
            
