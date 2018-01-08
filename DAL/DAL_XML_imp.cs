@@ -10,12 +10,15 @@ namespace DAL
 {
     internal class Dal_XML_imp : IDal
     {
-        public int addMother(Mother m)
+        public void AddMother(Mother m)
         {
+           
             DS.DSxml.Mothers.Add(m.toXML());
             DS.DSxml.SaveMothers();
-            return m.ID;
+           
         }
+        //matanya
+        public 
 
         private int MaxContractID()
         {
