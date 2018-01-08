@@ -33,5 +33,11 @@ namespace PLWPF
         {
             this.Close();
         }
+
+        private void GetContractDataGrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show(((Contract) GetContractDataGrid.SelectedItem).ToString(), "Information",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

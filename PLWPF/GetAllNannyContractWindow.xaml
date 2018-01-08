@@ -15,7 +15,7 @@
             <RowDefinition Height="473*"/>
             <RowDefinition Height="31*"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="GetContractDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Grid.RowSpan="2">
+        <DataGrid x:Name="GetContractDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Grid.RowSpan="2" MouseDoubleClick="GetContractDataGrid_OnMouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Contract #" Binding="{Binding ContractNumber}" />
                 <DataGridTextColumn Header="Nanny ID" Binding="{Binding NannyId}" />
