@@ -6,4 +6,6 @@ namespace BE
     {
         Monthly,Hourly
     }
+
+    
 }

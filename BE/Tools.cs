@@ -9,8 +9,16 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    static class Tools
+    public static class Tools
     {
+        public static MonthlyOrHourly toMonthlyOrHourly(this string Type)
+        {
+            if (Type=="Monthly")
+            {
+                return MonthlyOrHourly.Monthly;
+            }
+            return MonthlyOrHourly.Hourly;
+        }
         public static string ToStringProperty<T>(this T t)
         {
             string str = "";
