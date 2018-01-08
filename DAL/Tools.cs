@@ -100,10 +100,131 @@ namespace DAL
             return clone;
         }
 
-        
-       
 
-        public static Child ToChild(this XElement childXml)
+
+        public static XElement toXML(this Time time, string attribute = "undefined")
+        {
+            return new XElement("Time", new XAttribute("type", attribute),
+                new XElement("Hour", time.Hour),
+                new XElement("Minutes", time.Minute));
+
+        }
+
+        public static XElement toXML(this Mother mother)
+        {
+            return new XElement("Mother",
+                new XElement("ID", mother.ID),
+                new XElement("FirstName", mother.FirstName),
+                new XElement("LastName", mother.LastName),
+
+                new XElement("Address", mother.Address),
+                new XElement("SearchArea", mother.SearchArea),
+                new XElement("MaxDistance", mother.MaxDistance),
+                new XElement("Schedule",
+                    (from d in mother.Schedule
+                     select new XElement($"Day", new XElement("isWorking", d.IsWorking),
+                         new XElement(d.StartTime.toXML("Start")),
+                         new XElement(d.EndTime.toXML("End"))
+                     )
+                    )
+                ),
+                new XElement("Telephone", mother.Telephone),
+                new XElement("Rate", mother.MonthlyOrHourly),
+                new XElement("Budget", mother.Budget),
+                new XElement("KosherFood", mother.KosherFood),
+                new XElement("WantsExperience", mother.WantedExperience),
+                new XElement("WantsElevator", mother.WantsElevator),
+                new XElement("Vacation", mother.Vacation),
+                new XElement("Recommendation", mother.Recommendation)
+            );
+        }
+        public static XElement toXML(this Contract contract)
+        {
+            return new XElement("Contract",
+                new XElement("ContractNumber", contract.ContractNumber),
+                new XElement("MotherId", contract.MotherId),
+                new XElement("NannyId", contract.NannyId),
+                new XElement("ChildId", contract.ChildId),
+                new XElement("Interview", contract.Interview),
+                new XElement("HourlyWage", contract.HourlyWage),
+                new XElement("MonthlyWage", contract.MonthlyWage),
+                new XElement("Salary", contract.Salary),
+                new XElement("Rate", contract.Rate),
+                new XElement("StartDate", contract.StartDate.ToShortDateString()),
+                new XElement("EndDate", contract.EndDate.ToShortDateString()),
+                new XElement("Signed", contract.Signed)
+
+          );
+        }
+
+        public static XElement toXML(this Nanny nanny)
+        {
+            return new XElement("Nanny",
+                new XElement("ID", nanny.ID),
+                new XElement("FirstName", nanny.FirstName),
+                new XElement("LastName", nanny.LastName),
+                new XElement("Birthday", nanny.Birthday),
+                new XElement("Telephone", nanny.Telephone),
+                new XElement("Address", nanny.Address),
+                new XElement("Floor", nanny.Floor),
+                new XElement("IsElevator", nanny.IsElevator),
+                new XElement("Experience", nanny.Experience),
+                new XElement("KidsCapacity", nanny.KidsCapacity),
+                new XElement("MinimumAge", nanny.MinimumAge),
+                new XElement("MaximumAge", nanny.MaximumAge),
+                new XElement("HourlyWage", nanny.HourlyWage),
+                new XElement("MonthyWage", nanny.MonthlyWage),
+                new XElement("Vacation", nanny.Vacation),
+                new XElement("Recommendation", nanny.Recommendation),
+                new XElement("KosherFood", nanny.KosherFood),
+                new XElement("Schedule",
+                    (from d in nanny.Schedule
+                     select new XElement($"Day", new XElement("isWorking", d.IsWorking),
+                         new XElement(d.StartTime.toXML("Start")),
+                         new XElement(d.EndTime.toXML("End"))
+                      )
+                        )
+                     )
+                );
+        }
+
+        public static XElement toXML(this Child child)
+        {
+            return new XElement("Child",
+                new XElement("ID", child.ID),
+                new XElement("Name", child.Name),
+                new XElement("MotherID", child.MotherID),
+                new XElement("Birthday", child.Birthday.ToShortDateString()),
+                new XElement("SpecialNeeds", child.SpecialNeeds),
+                (child.SpecialNeeds) ? new XElement("Needs", child.Needs) : new XElement("Needs", "")
+                );
+        }
+
+    
+
+
+
+    public static Contract ToContract(this XElement contractXml)
+    {
+        Contract result = new Contract
+        {
+            ContractNumber = Int32.Parse(contractXml.Element("ContractNumber").Value),
+            ChildId = Int32.Parse(contractXml.Element("childId").Value),
+            MotherId = Int32.Parse(contractXml.Element("MotherId").Value),
+            NannyId = Int32.Parse(contractXml.Element("NannyId").Value),
+            StartDate = Convert.ToDateTime(contractXml.Element("StartDate").Value),
+            EndDate = Convert.ToDateTime(contractXml.Element("EndDate").Value),
+            Rate =BE.Tools.toMonthlyOrHourly(contractXml.Element("Rate").Value),
+            HourlyWage = Double.Parse(contractXml.Element("HourlyWage").Value),
+            MonthlyWage = Double.Parse(contractXml.Element("MonthlyWage").Value),
+            Interview = Boolean.Parse(contractXml.Element("Interview").Value), 
+            Salary=Double.Parse(contractXml.Element("Salary").Value),
+            Signed = Boolean.Parse(contractXml.Element("Signed").Value)
+            };
+        return result;
+    }
+
+    public static Child ToChild(this XElement childXml)
         {
             Child result = null;
             if (childXml == null)
