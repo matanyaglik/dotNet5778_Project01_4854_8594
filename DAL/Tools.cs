@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using BE;
 
 namespace DAL
@@ -97,6 +98,117 @@ namespace DAL
                 Salary=contract.Salary 
             };
             return clone;
+        }
+
+        
+       
+
+        public static Child ToChild(this XElement childXml)
+        {
+            Child result = null;
+            if (childXml == null)
+            {
+                return result;
+            }
+            else
+            {
+                result=new Child
+                {
+                    Name = childXml.Element("Name").Value,
+                    Birthday = Convert.ToDateTime(childXml.Element("Birthday")),
+                    ID = int.Parse(childXml.Element("ID").Value),
+                    MotherID = int.Parse(childXml.Element("MotherID").Value),
+                    Needs = childXml.Element("Needs").Value,
+                    SpecialNeeds = bool.Parse(childXml.Element("SpecialNeeds").Value)
+                };
+                return result;
+            }
+        }
+        public static Nanny ToNanny(this XElement nannyXml)
+        {
+            Nanny result = null;
+            if (nannyXml == null)
+            {
+                return result;
+            }
+            else
+            {
+                result = new Nanny
+                {
+                    ID = int.Parse(nannyXml.Element("ID").Value),
+                    FirstName = nannyXml.Element("FirstName").Value,
+                    LastName = nannyXml.Element("LastName").Value,
+                    Address = nannyXml.Element("Address").Value,
+                    Birthday = Convert.ToDateTime(nannyXml.Element("Birthday")),
+                    Floor = Convert.ToInt32(nannyXml.Element("Floor")),
+                    Schedule = (from d in nannyXml.Element("Schedule").Elements("Day")
+                        from t in d.Elements("Time")
+                        select new Schedule
+                        {
+                            StartTime = new Time(
+                                int.Parse(t.Element("Hour").Value),
+                                int.Parse(t.Element("Minute").Value)),
+                            EndTime = new Time(
+                                int.Parse(t.Element("Hour").Value),
+                                int.Parse(t.Element("Minute").Value)),
+                            IsWorking = Convert.ToBoolean(t.Element("IsWorking").Value)
+                        }).ToArray(),
+                    Recommendation = nannyXml.Element("Recommendation").Value,
+                    Vacation = bool.Parse(nannyXml.Element("Vacation").Value),
+                    KosherFood = bool.Parse(nannyXml.Element("KosherFood").Value),
+                    Telephone = nannyXml.Element("Telephone").Value,
+                    MonthlyWage = double.Parse(nannyXml.Element("MonthlyWage").Value),
+                    HourlyWage = double.Parse(nannyXml.Element("HourlyWage").Value),
+                    Experience = int.Parse(nannyXml.Element("Experience").Value),
+                    IsElevator = bool.Parse(nannyXml.Element("IsElevator").Value),
+                    KidsCapacity = int.Parse(nannyXml.Element("KidsCapacity").Value),
+                    MaximumAge = int.Parse(nannyXml.Element("MaximumAge").Value),
+                    MinimumAge = int.Parse(nannyXml.Element("MinimumAge").Value)
+                };
+                return result;
+            }
+        }
+        public static Mother toMother(this XElement motherXml)
+        {
+            Mother result = null;
+            if (motherXml == null)
+            {
+                return result;
+            }
+            else
+            {
+                result = new Mother
+                {
+                    ID = int.Parse(motherXml.Element("ID").Value),
+                    FirstName = motherXml.Element("FirstName").Value,
+                    LastName = motherXml.Element("LastName").Value,
+                    SearchArea = motherXml.Element("SearchArea").Value,
+                    Address = motherXml.Element("Address").Value,
+                    Telephone = motherXml.Element("Telephone").Value,
+                    Schedule = (from d in motherXml.Element("Schedule").Elements("Day")
+                        from t in d.Elements("Time")
+                        select new Schedule
+                        {
+                            StartTime = new Time(
+                                int.Parse(t.Element("Hour")?.Value),
+                                int.Parse(t.Element("Minute")?.Value)),
+                            EndTime = new Time(
+                                int.Parse(t.Element("Hour")?.Value),
+                                int.Parse(t.Element("Minute")?.Value)),
+                            IsWorking = Convert.ToBoolean(t.Element("IsWorking")?.Value)
+                        }).ToArray(),
+                    MonthlyOrHourly = motherXml.Element("Rate").Value.toMonthlyOrHourly(),
+                    Recommendation =
+                        Convert.ToBoolean(motherXml.Element("Recommendation")?.Value),
+                    Vacation = Convert.ToBoolean(motherXml.Element("Vacation")),
+                    KosherFood = Convert.ToBoolean(motherXml.Element("KosherFood")),
+                    WantsElevator = Convert.ToBoolean(motherXml.Element("WantsElevator")),
+                    Budget = Convert.ToInt32(motherXml.Element("Budget")),
+                    MaxDistance = Convert.ToInt32(motherXml.Element("MaxDistance")),
+                    WantedExperience = Convert.ToInt32(motherXml.Element("WantedExperience"))
+                };
+                return result;
+            }
         }
     }
 }
