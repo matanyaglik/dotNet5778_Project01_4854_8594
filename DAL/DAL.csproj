@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DalFactory.cs" />
     <Compile Include="Dal_imp.cs" />
+    <Compile Include="DAL_XML_imp.cs" />
     <Compile Include="IDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools.cs" />
