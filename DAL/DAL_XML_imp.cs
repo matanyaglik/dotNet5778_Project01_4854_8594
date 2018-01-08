@@ -4,107 +4,78 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
+using System.Xml.Linq;
 
 namespace DAL
 {
-    class DAL_XML_imp:IDal
+    internal class Dal_XML_imp : IDal
     {
-        public void AddNanny(Nanny nanny)
+        public int addMother(Mother m)
+        {
+            DS.DSxml.Mothers.Add(m.toXML());
+            DS.DSxml.SaveMothers();
+            return m.ID;
+        }
+
+        private int MaxContractID()
+        {
+            int result;
+            var kayam = DS.DSxml.Contracts.Elements("Contract").Any();
+
+            if (!kayam)
+            {
+                result = 100000;
+            }
+            else
+            {
+                result = (from c in DS.DSxml.Contracts.Elements("Contract")
+                          select Int32.Parse(c.Element("ContractID").Value)).Max();
+            }
+
+            return result;
+
+        }
+        public int addContract(Contract c)
+        {
+            //ContractNannyChild contract = c.clone();
+            //contract.ContractId = MaxContractID() + 1;
+            //DS.DSxml.Contracts.Add(contract.toXML());
+
+            XElement contract = c.toXML();
+            contract.Element("ContractID").Value = (MaxContractID() + 1).ToString();
+            DS.DSxml.Contracts.Add(contract);
+            DS.DSxml.SaveContracts();
+            return Int32.Parse(contract.Element("ContractID").Value);
+
+        }
+        public IEnumerable<Mother> getAllMothers()
+        {
+            XElement root = DS.DSxml.Mothers;
+            List<Mother> result = new List<Mother>();
+            foreach (var m in root.Elements("Mother"))
+            {
+                result.Add(m.toMother());
+            }
+            return result.AsEnumerable();
+        }
+
+        public IEnumerable<Contract> getAllContracts()
+        {
+            XElement root = DS.DSxml.Contracts;
+            List<Contract> result = new List<Contract>();
+            foreach (var c in root.Elements("Contract"))
+            {
+                result.Add(c.ToContract());
+            }
+            return result.AsEnumerable();
+        }
+
+        public bool removeMother(Mother m)
         {
             throw new NotImplementedException();
         }
 
-        public bool RemoveNanny(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateNanny(Nanny nanny)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Nanny GetNanny(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddMother(Mother mother)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool RemoveMother(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateMother(Mother mother)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Mother GetMother(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddChild(Child child)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool RemoveChild(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateChild(Child child)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Child GetChild(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddContract(Contract contract)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool RemoveContract(int contractNumber)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateContract(Contract contract)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Contract GetContract(int contractNumber)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Nanny> GetNannies(Func<Nanny, bool> predicate = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Mother> GetMothers(Func<Mother, bool> predicate = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Child> GetChildrenByMother(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Contract> GetContracts(Func<Contract, bool> predicate = null)
+        public bool removeContract(Contract c)
         {
             throw new NotImplementedException();
         }

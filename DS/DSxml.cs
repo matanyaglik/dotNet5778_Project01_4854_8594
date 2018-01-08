@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DS
 {
-    class DSxml
+    public class DSxml
     {
         private static string solutionDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName;
 
