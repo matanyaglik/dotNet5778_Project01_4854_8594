@@ -245,6 +245,12 @@ namespace DAL
                 return result;
             }
         }
+
+        /// <summary>
+        /// Return Nanny from XML file
+        /// </summary>
+        /// <param name="nannyXml"></param>
+        /// <returns></returns>
         public static Nanny ToNanny(this XElement nannyXml)
         {
             Nanny result = null;
